@@ -6,6 +6,7 @@ import ConfigSrore from './src/Store/config';
 import Login from './src/components/views/Login';
 import Home from './src/components/views/Home';
 import AddPosts from './src/components/views/Admin/AddPosts';
+import UserPosts from './src/components/views/Admin/UserPosts';
 import Sidedrawer from './src/components/views/Sidedrawer';
 
 const store = ConfigSrore();
@@ -15,6 +16,13 @@ Navigation.registerComponent('sellitApp.Home', () => Home, store, Provider);
 Navigation.registerComponent(
   'sellitApp.AddPosts',
   () => AddPosts,
+  store,
+  Provider
+);
+
+Navigation.registerComponent(
+  'sellitApp.UserPosts',
+  () => UserPosts,
   store,
   Provider
 );

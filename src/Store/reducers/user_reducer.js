@@ -12,6 +12,9 @@ export default function(state = {}, action) {
         },
       };
     case REGISTER_USER:
+      console.log('====================================');
+      console.log(action.payload);
+      console.log('====================================');
       return {
         ...state,
         userData: {

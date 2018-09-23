@@ -127,6 +127,7 @@ class LoginForm extends Component {
         });
       } else {
         this.props.signUp(formToSubmit).then(() => {
+          console.log('signUp');
           this.manageAccess();
         });
       }
@@ -209,7 +210,7 @@ const styles = StyleSheet.create({
   },
   buttonStyleAndroid: {
     marginBottom: 15,
-    marginTop: 155,
+    marginTop: 15,
   },
   buttonStyleIos: {
     marginBottom: 5,

@@ -54,3 +54,28 @@ export const navigatorDrawer = (event, $this) => {
     });
   }
 };
+
+export const navigatorDeepLink = (event, $this) => {
+  if (event.type === 'DeepLink') {
+    $this.props.navigator.toggleDrawer({
+      side: 'left',
+      animated: true,
+    });
+
+    if (event.payload.typeLink === 'tab') {
+      $this.props.navigator.switchToTab({
+        tabIndex: event.payload.indexLink,
+      });
+    } else {
+      $this.props.navigator.showModal({
+        screen: event.link,
+        animationType: 'slide-horizontal',
+        navigatorStyle: {
+          navBarBackgroundColor: '#00ada9',
+          screenBackgroundColor: '#fff',
+        },
+        backButtonHidden: false,
+      });
+    }
+  }
+};

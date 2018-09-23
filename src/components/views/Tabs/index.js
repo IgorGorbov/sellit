@@ -25,7 +25,7 @@ const LoadTabs = () => {
   Icon.getImageSource('home', 32)
     .then(icon => {
       homeIcon = icon;
-      return Icon.getImageSource('clipboard', 32);
+      return Icon.getImageSource('dollar', 32);
     })
     .then(icon => {
       postsIcon = icon;
@@ -49,9 +49,9 @@ const LoadTabs = () => {
           },
           {
             screen: 'sellitApp.AddPosts',
-            label: 'Add posts',
+            label: 'Sell it',
             icon: postsIcon,
-            title: 'Add posts',
+            title: 'Sell it',
             navigatorStyle: navStyle,
             navigatorButtons: {
               leftButtons: [navLeftButton()],
@@ -77,7 +77,7 @@ const LoadTabs = () => {
         drawer: {
           left: {
             screen: 'sellitApp.Sidedrawer',
-            fixedWidht: 500,
+            fixedWidth: 400,
           },
         },
       });

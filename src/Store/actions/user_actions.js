@@ -6,28 +6,6 @@ import { SIGNUP, SIGNIN, REFRESH } from '../../utils/misc';
 export function signUp(data) {
   const request = axios({
     method: 'POST',
-    url: SIGNIN,
-    data: {
-      email: data.email,
-      password: data.password,
-      returnSecureToken: true,
-    },
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(response => response.data)
-    .catch(e => false);
-
-  return {
-    type: LOGIN_USER,
-    payload: request,
-  };
-}
-
-export function signIn(data) {
-  const request = axios({
-    method: 'POST',
     url: SIGNUP,
     data: {
       email: data.email,
@@ -43,6 +21,28 @@ export function signIn(data) {
 
   return {
     type: REGISTER_USER,
+    payload: request,
+  };
+}
+
+export function signIn(data) {
+  const request = axios({
+    method: 'POST',
+    url: SIGNIN,
+    data: {
+      email: data.email,
+      password: data.password,
+      returnSecureToken: true,
+    },
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.data)
+    .catch(e => false);
+
+  return {
+    type: LOGIN_USER,
     payload: request,
   };
 }
