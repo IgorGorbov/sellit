@@ -1,9 +1,10 @@
 import { Dimensions, Platform, AsyncStorage } from 'react-native';
 
+export const FIREBASE = 'https://sellitapp-3476e.firebaseio.com';
 export const APIKEY = 'AIzaSyA60DWbj_Ql7nVe72yMBw5dUWSJgp4Mgb4';
 export const SIGNUP = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${APIKEY}`;
 export const SIGNIN = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${APIKEY}`;
-export const REFRESH = `https://securetoken.googleapis.com/v1/token?key${APIKEY}`;
+export const REFRESH = `https://securetoken.googleapis.com/v1/token?key=${APIKEY}`;
 
 export const getOrientation = value =>
   Dimensions.get('window').height > value ? 'portrait' : 'landscape';
@@ -78,4 +79,30 @@ export const navigatorDeepLink = (event, $this) => {
       });
     }
   }
+};
+
+export const gridTwoColumns = list => {
+  const newArticles = [];
+  const articles = list;
+
+  let count = 1;
+  let vessel = {};
+
+  if (articles) {
+    articles.forEach(article => {
+      if (count === 1) {
+        vessel.blockOne = article;
+        count++;
+      } else {
+        vessel.blockTwo = article;
+        newArticles.push(vessel);
+
+        count = 1;
+
+        vessel = {};
+      }
+    });
+  }
+
+  return newArticles;
 };

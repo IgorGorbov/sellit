@@ -21,7 +21,7 @@ const navLeftButton = () => ({
   buttonColor: 'white',
 });
 
-const LoadTabs = () => {
+const LoadTabs = allow => {
   Icon.getImageSource('home', 32)
     .then(icon => {
       homeIcon = icon;
@@ -48,7 +48,7 @@ const LoadTabs = () => {
             },
           },
           {
-            screen: 'sellitApp.AddPosts',
+            screen: allow ? 'sellitApp.AddPosts' : 'sellitApp.NotAllow',
             label: 'Sell it',
             icon: postsIcon,
             title: 'Sell it',

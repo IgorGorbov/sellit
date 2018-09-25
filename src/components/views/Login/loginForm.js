@@ -47,8 +47,8 @@ class LoginForm extends Component {
   };
 
   componentDidMount() {
-    getToken(() => {
-      console.log('get Token');
+    getToken(data => {
+      console.log('get Token', data);
     });
   }
 
@@ -57,7 +57,7 @@ class LoginForm extends Component {
     else {
       setToken(this.props.User.userData, () => {
         this.setState({ hasErrors: false });
-        LoadTabs();
+        LoadTabs(true);
       });
     }
   };
@@ -124,6 +124,7 @@ class LoginForm extends Component {
       if (this.state.type === 'Login') {
         this.props.signIn(formToSubmit).then(() => {
           console.log('signIn');
+          this.manageAccess();
         });
       } else {
         this.props.signUp(formToSubmit).then(() => {
@@ -192,7 +193,11 @@ class LoginForm extends Component {
           color="lightgrey"
           onPress={this.changeFormType}
         />
-        <Button title="I'll do it later" color="lightgrey" onPress={LoadTabs} />
+        <Button
+          title="I'll do it later"
+          color="lightgrey"
+          onPress={() => LoadTabs(false)}
+        />
       </View>
     );
   }

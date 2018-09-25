@@ -50,7 +50,7 @@ class Login extends React.Component {
             });
           } else {
             setToken(this.props.User.userData, () => {
-              LoadTabs();
+              LoadTabs(true);
             });
           }
         });

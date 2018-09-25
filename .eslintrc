@@ -6,6 +6,7 @@
         "prettier/react"
     ],
     "rules": {
+        "no-plusplus": 0,
         "no-unused-expressions": 0,
         "no-nested-ternary": 0,
         "guard-for-in": 0,

@@ -1,4 +1,9 @@
-import { REGISTER_USER, LOGIN_USER, AUTO_SIGN_IN } from '../types';
+import {
+  REGISTER_USER,
+  LOGIN_USER,
+  AUTO_SIGN_IN,
+  GET_USER_POSTS,
+} from '../types';
 
 export default function(state = {}, action) {
   switch (action.type) {
@@ -12,9 +17,6 @@ export default function(state = {}, action) {
         },
       };
     case REGISTER_USER:
-      console.log('====================================');
-      console.log(action.payload);
-      console.log('====================================');
       return {
         ...state,
         userData: {
@@ -31,6 +33,12 @@ export default function(state = {}, action) {
           token: action.payload.id_token || false,
           refToken: action.payload.refresh_token || false,
         },
+      };
+
+    case GET_USER_POSTS:
+      return {
+        ...state,
+        userPosts: action.payload,
       };
     default:
       return state;
