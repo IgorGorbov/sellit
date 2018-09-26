@@ -1,7 +1,13 @@
 import axios from 'axios';
 
-import { GET_ARTICLES, ADD_ARTICLE, RESET_ARTICLE } from '../types';
-import { FIREBASE } from '../../utils/misc';
+import {
+  GET_ARTICLES,
+  ADD_ARTICLE,
+  RESET_ARTICLE,
+  DELETE_USER_POST,
+} from '../types';
+import { FIREBASE, setToken } from '../../utils/misc';
+import { autoSignIn } from './user_actions';
 
 export function getArticles(category) {
   let URL = `${FIREBASE}/articles.json`;
@@ -49,5 +55,46 @@ export function resetArticle() {
   return {
     type: RESET_ARTICLE,
     payload: '',
+  };
+}
+
+export function deleteUserPost(postId, userData) {
+  const promise = new Promise((resolve, reject) => {
+    const URL = `${FIREBASE}/articles/${postId}.json`;
+
+    const request = axios({
+      method: 'DELETE',
+      url: `${URL}?auth=${userData.token}`,
+    })
+      .then(response => {
+        resolve({ deletePost: true });
+      })
+      .catch(e => {
+        const signIn = autoSignIn(userData.refToken);
+
+        signIn.payload.then(response => {
+          const newToken = {
+            token: response.id_token,
+            refToken: response.refresh_token,
+            uid: response.user_id,
+          };
+          setToken(newToken, () => {
+            axios({
+              method: 'DELETE',
+              url: `${URL}?auth=${userData.token}`,
+            }).then(() => {
+              resolve({
+                userData: newToken,
+                deletePost: true,
+              });
+            });
+          });
+        });
+      });
+  });
+
+  return {
+    type: DELETE_USER_POST,
+    payload: promise,
   };
 }

@@ -5,3 +5,4 @@ export const GET_ARTICLES = 'GET_ARTICLES';
 export const ADD_ARTICLE = 'ADD_ARTICLE';
 export const RESET_ARTICLE = 'RESET_ARTICLE';
 export const GET_USER_POSTS = 'GET_USER_POSTS';
+export const DELETE_USER_POST = 'DELETE_USER_POST';
