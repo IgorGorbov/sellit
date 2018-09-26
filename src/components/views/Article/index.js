@@ -23,7 +23,7 @@ const Article = props => {
         resizeMode="cover"
         style={styles.itemImage}
         source={{
-          uri: 'https://loremflickr.com/400/400/girl,cat,brazil,dog,paris,rio',
+          uri: 'https://loremflickr.com/400/400/girl,brazil,dog,paris,cat/all',
         }}
       />
 
