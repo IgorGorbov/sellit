@@ -12,4 +12,4 @@
 - react-native
 - react-native-navigation
 - react-native-vector-icons
-- firebace
+- firebase
